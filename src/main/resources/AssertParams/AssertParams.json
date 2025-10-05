@@ -1,0 +1,55 @@
+{
+	"assertParams": {
+		"verifyExpected-1": {
+			"totalRowCount": 2
+		},
+		"verifyExpected-2": {
+			"matchingCount": 1,
+			"wordsToSearch": ["SANDY DEV","QUARTERS           0           0.00", "", "ALLCREDIT", "X______________________________________"],
+			"expectedParams": {
+				"Last Name": "AGRAWAL",
+				"First Name": "SANDEEP",
+				"Email": "sandeepagarwal0305@gmail.com"
+			}
+		},
+		"verifyExpected-3": {
+			"matchingCount": 1,
+			"tableRowNum": [1,2,3,4,5,6,7,8],
+			"expectedParams": {
+				"Last Name": "AGRAWAL",
+				"First Name": "AYAAN",
+				"Email": "aglr26.sandeep@gmail.com"
+			}
+		},
+		"verifyExpected-4": {
+			"expectedParams": {
+				"LAST_NAME": "AGRAWAL",
+				"FIRST_NAME": "SANDEEP"
+			}
+		},
+		"verifyExpected-5": {
+			"expectedParamType":"CSV",
+			"fileName": "Sample/test.csv"
+		},
+		"Text_Compare": {
+			"wordsToSearch": ["SANDY DEV","QUARTERS           0           0.00", "", "ALLCREDIT", "X______________________________________"]
+		},
+		"PDF_Compare": {
+			"wordsToSearch": [""],
+			"dateToSearch":[{"dateFormat":"YYYY-MM-dd", "numberOfDays": "2", "isPastOrFutureDate":"PAST/FUTURE"}],
+			"excludePattern" : [""],
+			"startPage": 1,
+			"endPage": 1
+		},
+		"SearchCurrentDate": {
+			"wordsToSearch": [""],
+			"dateToSearch":[{"dateFormat":"YYYY-MM-dd", "numberOfDays": "0"}]
+		},
+		"Verify-Dropdown-values": {
+			"exactMatch" : ["A",5,"C", 10.00],
+			"matchAny": ["A",5,"C", 10.00]
+		}
+	}
+}
+
+

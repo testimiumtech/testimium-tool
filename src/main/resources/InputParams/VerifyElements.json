@@ -1,0 +1,12 @@
+{
+	"formElements": {
+		"VerifyElementsKey":[
+			{"TestStep" : "VerifyElementIfDisplayed LastName" },
+			{"TestStep" : "VerifyElementIfDisplayed Email" },
+			{"TestStep" : "VerifyElementIfDisplayed FirstName" },
+			{"TestStep" : "VerifyElementValue  LastName  AGRAWAL" },
+			{"TestStep" : "VerifyElementValue  Email  sandeepagarwal0305@gmail.com"},
+			{"TestStep" : "VerifyElementValue FirstName  SANDEEP" }
+		]
+	}
+}

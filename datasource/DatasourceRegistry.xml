@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connectorservices>
+	<services>
+		<service name="testimium">
+			<connectors>
+				<connector name="sql.server.dev">
+					<properties>
+						<property key="application_name" value="stratus" />
+						<property key="database_type" value="SQLServer" />
+						<property key="isMainDataSource" value="YES" />
+						<property key="hibernate.connection.driver_class" value="net.sourceforge.jtds.jdbc.Driver" />
+						<property key="hibernate.connection.url"
+							value="jdbc:jtds:sqlserver://localhost:1433/testimium" />
+						<property key="hibernate.connection.username" value="wrmsdb " />
+						<property key="hibernate.connection.password" value="masterkey" />
+						<property key="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+						<property key="hibernate.show_sql" value="false" />
+						<property key="hibernate.use_sql_comments" value="true" />
+						<property key="hibernate.format_sql" value="true" />
+						<property key="hibernate.hbm2ddl.auto" value="validate" />
+						<property key="hibernate.connection.autocommit" value="false" />
+						<property key="current_session_context_class" value="managed" />
+					</properties>
+				</connector>
+			</connectors>
+		</service>
+	</services>
+</connectorservices>

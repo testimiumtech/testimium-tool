@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"YesterdayDate":[
+			{
+				"script" : "return function getFromDate(){     var date = new Date();     date.setDate(date.getDate() - 14);     var fromDate = (date.getMonth()+1 < 10 ? '0': '') + (date.getMonth()+1)    \t\t + '/' +  (date.getDate() < 10 ? + '0' : '') + date.getDate() + '/' + date.getFullYear();    return fromDate;   }",
+				"args": ["Yesterday"]
+			}
+		]
+	}
+}

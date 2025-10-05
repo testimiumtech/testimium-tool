@@ -1,0 +1,130 @@
+{
+  "formElements": {
+    "LastSaleVerification":[
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl TODAY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl YESTERDAY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt YesterdayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LAST$$2$$DAYS" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromLast2Days value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LAST$$3$$DAYS" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromLast3Days value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LAST$$7$$DAYS" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromLast7Days value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LST$$3WKS$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromLast3WKSTY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LST$$3WKS$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromLast3WKSLY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl WTD$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromWTDTY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl WTD$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromWTDLY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl MTD$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromMTDTY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl MTD$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromMTDLY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl YTD$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromYTDTY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl YTD$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.FromDate.txt fromYTDLY value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl TODAY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl YESTERDAY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt YesterdayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LAST$$2$$DAYS" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LAST$$3$$DAYS" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LAST$$7$$DAYS" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LST$$3WKS$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl LST$$3WKS$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt currentDateLastYear value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl WTD$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl WTD$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt currentDateLastYear value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl MTD$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl MTD$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt currentDateLastYear value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl YTD$$TY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt TodayDate value" },
+      {"TestStep" : "SetElementSelect  Common.LastSaleDate.ddl YTD$$LY" },
+      {"TestStep" : "VerifyElementByJs Common.ToDate.txt currentDateLastYear value" }
+    ]
+  },
+  "scripts": {
+    "TodayDate":[
+      {
+        "script" : "return (((new Date()).getMonth()+1 < 10 ? '0': '') + ((new Date()).getMonth()+1) + '/' +  (((new Date()).getDate()) < 10 ? + '0' : '') + ((new Date()).getDate()) + '/' + (new Date()).getFullYear());"
+      }
+    ],
+    "currentDateLastYear" : [
+      {
+        "script" : "var date = new Date();\n  var fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + (date.getFullYear() - 1);\n        return fromDate;"
+      }
+    ],
+    "YesterdayDate" : [
+      {
+        "script" : "return (((new Date()).getMonth()+1 < 10 ? '0': '') + ((new Date()).getMonth()+1) + '/' +  (((new Date()).getDate() - 1) < 10 ? + '0' : '') + ((new Date()).getDate() - 1) + '/' + (new Date()).getFullYear());"
+      }
+    ],
+    "fromLast2Days" : [
+      {
+        "script" : "return (((new Date()).getMonth()+1 < 10 ? '0': '') + ((new Date()).getMonth()+1) + '/' +  (((new Date()).getDate() - 1) < 10 ? + '0' : '') + ((new Date()).getDate() - 1) + '/' + (new Date()).getFullYear());"
+      }
+    ],
+    "fromLast3Days" : [
+      {
+        "script" : "return (((new Date()).getMonth()+1 < 10 ? '0': '') + ((new Date()).getMonth()+1) + '/' +  (((new Date()).getDate() - 2) < 10 ? + '0' : '') + ((new Date()).getDate() - 2) + '/' + (new Date()).getFullYear());"
+      }
+    ],
+    "fromLast7Days" : [
+      {
+        "script" : "return (((new Date()).getMonth()+1 < 10 ? '0': '') + ((new Date()).getMonth()+1) + '/' +  (((new Date()).getDate() - 6) < 10 ? + '0' : '') + ((new Date()).getDate() - 6) + '/' + (new Date()).getFullYear());"
+      }
+    ],
+    "fromLast3WKSTY" : [
+      {
+        "script" : "var date = new Date();\n var day = date.getDay();\n        fDay = date.getDate() - day ; \n        date.setDate(fDay-14);\n       var fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + date.getFullYear();\n        return fromDate;"
+      }
+    ],
+    "fromLast3WKSLY" : [
+      {
+        "script" : "var date = new Date();\n var day = date.getDay();\n        fDay = date.getDate() - day; \n        date.setDate(fDay-14);\n       var fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + (date.getFullYear() - 1);\n        return fromDate;"
+      }
+    ],
+    "fromWTDTY" : [
+      {
+        "script" : "var date = new Date();\n var day = date.getDay();\n        fDay = date.getDate() - day; \n        date.setDate(fDay);\n       var fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + date.getFullYear();\n        return fromDate;"
+      }
+    ],
+    "fromWTDLY" : [
+      {
+        "script" : "var date = new Date();\n var day = date.getDay();\n        fDay = date.getDate() - day; \n        date.setDate(fDay);\n       var fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + (date.getFullYear() - 1);\n        return fromDate;"
+      }
+    ],
+    "fromMTDTY" : [
+      {
+        "script" : "var date = new Date();\n date.setDate(1);\n        fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + date.getFullYear();\n        return fromDate;"
+      }
+    ],
+    "fromMTDLY" : [
+      {
+        "script" : "var date = new Date();\n date.setDate(1);\n        fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + (date.getFullYear()-1);\n        return fromDate;"
+      }
+    ],
+    "fromYTDTY" : [
+      {
+        "script" : "var date = new Date();\n date.setDate(1);\n        date.setMonth(0);\n        fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + date.getFullYear();\n        return fromDate;"
+      }
+    ],
+    "fromYTDLY" : [
+      {
+        "script" : "var date = new Date();\n date.setDate(1);\n        date.setMonth(0);\n        fromDate = (date.getMonth()+1 < 10 ? '0' : '') + (date.getMonth()+1 ) + '/' + (date.getDate() < 10 ? '0' : '') + date.getDate() + '/' + (date.getFullYear()-1);\n        return fromDate;"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"scripts": {
+		"jsScriptKey-1":[
+			{
+				"propertyKey": "key.field.firstName",
+				"script" : "arguments[0].value='Aniseed Syrup', document.getElementById('FirstName');"
+			}
+		],
+
+		"jsScriptKey-2":[
+			{
+				"script":"document.getElementById('FirstName').setAttribute('value', 'Aniseed Syrup')"
+			}
+		],
+
+		"removeReadOnlyAttribute":[
+			{
+				"script":"arguments[0].removeAttribute('readonly','readonly')"
+			}
+		]
+	}
+}

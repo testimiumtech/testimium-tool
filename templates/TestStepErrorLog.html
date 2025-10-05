@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Style for the textarea */
+    textarea {
+      width: 100%;
+      height: 100px;
+      font-family: monospace;
+      font-size: 14px;
+	  /*overflow: auto;  Enables scrolling */
+      background-color: #f0f0f0;
+      color: RED;
+      border: 2px solid #ccc;
+      padding: 10px;
+      white-space: pre-wrap; /* Keeps newlines and spaces */
+      overflow-y: auto; /* Allows vertical scrolling */
+      /*resize: none;  Prevent resizing */
+    }
+  </style>
+</head>
+<body>
+
+<h5>Error Log</h5>
+
+<textarea readonly id="logTextarea" cols="50" >${logText}</textarea>
+
+<script>
+  // Example function to append logs dynamically
+  /*function addLog() {
+    const logTextarea = document.getElementById('logTextarea');
+    logTextarea.value += message + "\n";  // Add the log message with a newline
+    logTextarea.scrollTop = logTextarea.scrollHeight;  // Auto-scroll to the bottom
+	logTextarea.scrollLeft = logTextarea.scrollWidth;
+  }*/
+
+  // Example log messages
+ /* setInterval(() => {
+    addLog("Log entry at " + new Date().toLocaleTimeString());
+  }, 2000);*/ // Add a new log entry every 2 seconds
+</script>
+
+</body>
+</html>

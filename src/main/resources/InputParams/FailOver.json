@@ -1,0 +1,27 @@
+{
+	"formElements": {
+		"failOverKey":[
+			{"TestStep" : "CloseBrowserTab" },
+			{"TestStep" : "SwitchTab" },
+			{"TestStep" : "Wait 5000" },
+			{"TestStep" : "Click PoFromCustOrders.VendorMgmt.mlk" },
+			{"TestStep" : "Wait 5000" },
+			{"TestStep" : "SwitchTab" },
+			{"TestStep" : "Click ShowCriteriaLink" },
+			{"TestStep" : "Wait 2000"},
+			{"TestStep" : "Click ResetButton" }
+		],
+		"failOverSteps":[
+			{"TestStep" : "CloseBrowserTab" },
+			{"TestStep" : "SwitchTab" },
+			{"TestStep" : "Wait 5000" },
+			{"TestStep" : "Click PoFromCustOrders.VendorMgmt.mlk" },
+			{"TestStep" : "Wait 5000" },
+			{"TestStep" : "SwitchTab" },
+			{"TestStep" : "Click ShowCriteriaLink" },
+			{"TestStep" : "Wait 2000"},
+			{"TestStep" : "Click ResetButton" }
+		]
+	},
+	"skipNumberOfNextTestCases" : 4
+}

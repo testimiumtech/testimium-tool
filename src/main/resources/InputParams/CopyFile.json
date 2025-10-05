@@ -1,0 +1,8 @@
+{
+  "script": {
+    "copyFrom": "C:\\Celerant\\Stratus\\printing\\user1\\Receipt.pdf",
+    "copyTo": "C:\\Celerant\\Stratus1\\printing\\sandy\\Receipt.pdf",
+    "copyFom1": "sample/insertSQLFile.txt",
+    "copyTo1": "sample/insertSQLFile.sql"
+  }
+}

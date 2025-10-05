@@ -1,0 +1,7 @@
+{
+  "script": {
+    "fileType": "csv",
+    "fileName": "sample/data.csv",
+    "recordNums": [2, 5, 6]
+  }
+}

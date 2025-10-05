@@ -1,0 +1,9 @@
+{
+	"dbScript": {
+		"sqlQuery": "SELECT FIRST_NAME, LAST_NAME FROM TB_CUSTOMERS",
+		"sqlQuery2": "UPDATE TB_MODULE SET IS_USED='Y' WHERE MODULE_NAME={Global/Copied Variable Name} OR MODULE_NAME={Global/Copied Variable Name}",
+		"sqlQuery1": "UPDATE TB_MODULE SET IS_USED='N' WHERE MODULE_NAME='<%=GVariable=%>' AND MODULE_NAME='<%=GV2=%>'"
+	},
+	"useCopiedVariable":true,
+	"useGlobalVariable":true
+}

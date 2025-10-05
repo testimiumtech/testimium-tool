@@ -1,0 +1,5 @@
+{
+	"dbScript": {
+			"sqlQuery": "SELECT FIRST_NAME, LAST_NAME FROM TB_CUSTOMERS"
+		}
+}

@@ -1,0 +1,12 @@
+{
+	"dbScript": {
+		"sqlQuery": "UPDATE TB_MODULE SET IS_USED='N' WHERE MODULE_NAME='FIREARMS'",
+		"sqlQuery1": "UPDATE TB_MODULE SET IS_USED='Y' WHERE MODULE_NAME='FIREARMS'",
+		"sqlQuery2": "UPDATE TB_MODULE SET IS_USED='Y' WHERE MODULE_NAME={Global/Copied Variable Name} OR MODULE_NAME={Global/Copied Variable Name}",
+		"sqlQuery1": "UPDATE TB_MODULE SET IS_USED='N' WHERE MODULE_NAME='<%=GVariable=%>' AND MODULE_NAME='<%=GV2=%>'",
+		"filePath": "sample/insertSQLFile.txt",
+		"secondFilePath": "sample/insertSQLFile.sql"
+	},
+	"useCopiedVariable":true,
+	"useGlobalVariable":true
+}
