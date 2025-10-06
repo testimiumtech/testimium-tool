@@ -7,7 +7,7 @@
 
     <groupId>com.testimium</groupId>
     <artifactId>testimium-tool</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Testimium Tool</name>
     <description>A testing tool for automated test management</description>
     <url>https://github.com/testimiumtech/testimium-tool</url>
@@ -54,6 +54,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <selenium.version>4.13.0</selenium.version>
+        <tool.version>1.0.1</tool.version>
     </properties>
     <dependencies>
         <dependency>
@@ -332,7 +333,7 @@
                                         <resource>
                                             <directory>${project.basedir}/target</directory>
                                             <includes>
-                                                <include>testimium-tool-1.0-SNAPSHOT.jar</include>
+                                                <include>testimium-tool-${tool.version}-SNAPSHOT.jar</include>
                                             </includes>
                                         </resource>
                                     </resources>
