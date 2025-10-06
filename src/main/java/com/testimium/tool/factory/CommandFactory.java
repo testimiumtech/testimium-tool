@@ -23,7 +23,7 @@ public class CommandFactory {
     public static synchronized Command getCommandInstance(String command) throws CommandNotFoundException {
         synchronized (command) {
             try {
-                Class cls = Class.forName("com.bopsen.testimium.command." +
+                Class cls = Class.forName("com.testimium.tool.command." +
                         Commands.valueOf(command.toUpperCase()).getOperation() + "Cmd");
                 //cls.hashCode();
                 Method method = cls.getDeclaredMethod("getInstance", null);

@@ -21,9 +21,9 @@ public class VerificationTypeFactory {
     public static synchronized AbstractVerificationType  getVerificationInstance(String verifierType) throws VerificationException {
         synchronized(verifierType) {
             try {
-           /* Class cls = Class.forName("com.bopsen.testimium.command.verification.type.database."+
+           /* Class cls = Class.forName("com.testimium.tool.command.verification.type.database."+
                     Tables.valueOf(tableType.toUpperCase()).getTable()+"Verification");*/
-                Class cls = Class.forName("com.bopsen.testimium.verifier." +
+                Class cls = Class.forName("com.testimium.tool.verifier." +
                         Tables.valueOf(verifierType.toUpperCase()).getTable() + "Verification");
                 //cls.hashCode();
                 Method method = cls.getDeclaredMethod("getInstance", null);
