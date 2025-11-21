@@ -6,18 +6,19 @@ import com.testimium.tool.action.NonScreenshotCommands;
 import com.testimium.tool.context.TestContext;
 import com.testimium.tool.domain.CommandParam;
 import com.testimium.tool.domain.CommandResponse;
+import com.testimium.tool.domain.InputParameter;
+import com.testimium.tool.domain.TestJsonInputData;
 import com.testimium.tool.domain.testcase.ExcelTestCase;
 import com.testimium.tool.domain.testcase.TestStep;
-import com.testimium.tool.exception.HandleFailOverTestExecution;
-import com.testimium.tool.exception.RecoverBrokenTestExecutionException;
-import com.testimium.tool.exception.ShutdownTestExecution;
-import com.testimium.tool.exception.TestException;
+import com.testimium.tool.exception.*;
 import com.testimium.tool.executor.ActionExecutor;
 import com.testimium.tool.executor.HandleFailOverExecutor;
 import com.testimium.tool.logging.LogUtil;
 import com.testimium.tool.report.generator.ReportGenerator;
+import com.testimium.tool.utility.JsonParserUtility;
 import com.testimium.tool.utility.PropertyUtility;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -157,26 +158,38 @@ public class TestCaseHelper {
                     ExtentTest nestedChild =  initialExtentTestChild.createNode("Start - TestSuite Level - Handle FailOver Steps");
                     ReportGenerator.getReportInstance().setChildNodeLevel1(nestedChild);
 
-                    Object testCaseObj = TestContext.getTestContext("").getFailOver().get("TestSuiteLevel");
-                    LogUtil.logTestCaseErrorMsg("TestSuiteLevel testCaseObj -> " + testCaseObj, ex);
-                    if (null != testCaseObj) {
-                        if (null != ((ExcelTestCase) testCaseObj).getTestSteps()) {
-                            executeTestStep((ExcelTestCase) testCaseObj, true);
-                            LogUtil.logTestCaseMsg("Handling the fail over test execution: Finished");
-                            ReportGenerator.getReportInstance().getChildNodeLevel1().info("Handling the fail over test execution: Finished");
+                    InputParameter inputParam = JsonParserUtility.getInputParam();
+                    List<String> failOverTestCaseKeys = null;
+                    if(null != inputParam && null != inputParam.getFailOverTestCaseKeys() && inputParam.getFailOverTestCaseKeys().size() > 0) {
+                        failOverTestCaseKeys = inputParam.getFailOverTestCaseKeys();
+                    } else {
+                        failOverTestCaseKeys = new ArrayList<>();
+                        failOverTestCaseKeys.add("TestSuiteLevel");
+                    }
+
+                    for(int ktr=0; ktr < failOverTestCaseKeys.size(); ktr++) {
+                        //Object testCaseObj = TestContext.getTestContext("").getFailOver().get("TestSuiteLevel");
+                        Object testCaseObj = TestContext.getTestContext("").getFailOver().get(failOverTestCaseKeys.get(ktr));
+                        LogUtil.logTestCaseErrorMsg("TestSuiteLevel" + failOverTestCaseKeys.get(ktr) + " testCaseSteps -> " + testCaseObj, ex);
+                        if (null != testCaseObj) {
+                            if (null != ((ExcelTestCase) testCaseObj).getTestSteps()) {
+                                executeTestStep((ExcelTestCase) testCaseObj, true);
+                                LogUtil.logTestCaseMsg("Handling the fail over test execution: Finished");
+                                ReportGenerator.getReportInstance().getChildNodeLevel1().info("Handling the fail over test execution: Finished");
                             /*TestContext.getTestContext("").getTest()
                                     .log(Status.INFO, "Handling the fail over test execution: Finished");*/
+                            } else {
+                                LogUtil.logTestCaseMsg("Handling the fail over test scripts Not Found");
+                                ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Handling the fail over test scripts Not Found");
+                            /*TestContext.getTestContext("").getTest()
+                                    .log(Status.FAIL, "Handling the fail over test scripts Not Found");*/
+                            }
                         } else {
                             LogUtil.logTestCaseMsg("Handling the fail over test scripts Not Found");
                             ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Handling the fail over test scripts Not Found");
-                            /*TestContext.getTestContext("").getTest()
-                                    .log(Status.FAIL, "Handling the fail over test scripts Not Found");*/
-                        }
-                    } else {
-                        LogUtil.logTestCaseMsg("Handling the fail over test scripts Not Found");
-                        ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Handling the fail over test scripts Not Found");
                         /*TestContext.getTestContext("").getTest()
                                 .log(Status.FAIL, "failOverSteps test not defined");*/
+                        }
                     }
                     LogUtil.logTestCaseErrorMsg("Finish - TestSuite Level - Handle FailOver Steps", null);
                     ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Finish - TestSuite Level - Handle FailOver Steps");
@@ -189,6 +202,10 @@ public class TestCaseHelper {
             } catch (HandleFailOverTestExecution exd) {
                 //TODO FIX ME
                 LogUtil.logTestCaseErrorMsg("HandleFailOverTestExecution Execution in TestCaseHelper.handleFailOverTestExecution()", exd);
+            } catch (InputParamNotFoundException e) {
+                LogUtil.logTestCaseErrorMsg("InputParamNotFoundException Execution in TestCaseHelper.handleFailOverTestExecution()", e);
+            } catch (InputParamParsingException e) {
+                LogUtil.logTestCaseErrorMsg("InputParamParsingException Execution in TestCaseHelper.handleFailOverTestExecution()", e);
             }
         }
         return new CommandResponse("", true);

@@ -31,8 +31,8 @@ public class MasterTestCase /*implements ITest*/ {
 
     //@BeforeTest
     public void beforeTest() {
-        LogUtil.logToolMsg("Initializing Tool...........");
         new PropertyReader();
+        LogUtil.logToolMsg("Initializing Tool...........");
         this.testContext = TestContext.getTestContext("");
         //Date date = new Date();
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");

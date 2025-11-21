@@ -5,7 +5,6 @@ import com.testimium.tool.domain.CommandParam;
 import com.testimium.tool.domain.CommandResponse;
 import com.testimium.tool.exception.CommandException;
 import com.testimium.tool.locator.LocatorFactory;
-import com.testimium.tool.logging.LogUtil;
 import com.testimium.tool.utility.FileUtility;
 import com.testimium.tool.utility.ImagePath;
 import com.testimium.tool.utility.ImageUtil;
@@ -17,8 +16,6 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 /**
@@ -53,10 +50,9 @@ public class UploadFileCmd implements ExternalCommand<CommandParam, CommandRespo
             if(null == param.getArgs() || param.getArgs().length < 1)
                 throw new CommandException("Command argument is missing: provide file name to upload e.g. test.csv");
 
-            //TODO Change to param.getArgs()[1]
-            filePath = FileUtility.getAbsolutePath(PropertyUtility.getExternalDirPath().trim() + "/" + param.getArgs()[0]);
 
-            if(PropertyUtility.isSikuliExecutionEnabled()) {
+           /* if(PropertyUtility.isSikuliExecutionEnabled()) {
+                filePath = FileUtility.getAbsolutePath(PropertyUtility.getExternalDirPath().trim() + "/" + param.getArgs()[0]);
                 executeWithSikuli(param, filePath);
                 return  new CommandResponse("(Success)", true);
             }
@@ -72,14 +68,17 @@ public class UploadFileCmd implements ExternalCommand<CommandParam, CommandRespo
                 robot.keyRelease(KeyEvent.VK_ESCAPE);
             } catch (AWTException e) {
                 LogUtil.logTestCaseErrorMsg("UploadFileCmd - Try to verify and Escape any OS popup windows - ", e);
-            }
+            }*/
 
             //wait(param);
             //WebElement element = driver.findElement(LocatorFactory.getByLocatorProperty(param.getArgs()[0]));
             //TODO remove hardcorded property and Change to above commented line
             //WebElement element = wait(LocatorFactory.getByLocatorProperty("Common.ImportFileHidden.Display.txt"));
-            WebElement element = driver.findElement(LocatorFactory.getByLocatorProperty("Common.ImportFileHidden.Display.txt"));
+            //WebElement element = driver.findElement(LocatorFactory.getByLocatorProperty("Common.ImportFileHidden.Display.txt"));
             //WebElement element = findElement(LocatorFactory.getByLocatorProperty("Common.ImportFileHidden.Display.txt"));
+            WebElement element = driver.findElement(LocatorFactory.getByLocatorProperty(param.getArgs()[0]));
+            filePath = FileUtility.getAbsolutePath(PropertyUtility.getExternalDirPath().trim() + "/" + param.getArgs()[1]);
+
             String isReadonly = element.getAttribute("readonly");
             System.out.println("Readonly is now set=============" + isReadonly);
             if(null != isReadonly) {
@@ -89,7 +88,7 @@ public class UploadFileCmd implements ExternalCommand<CommandParam, CommandRespo
                 element.sendKeys(filePath);
                 js.executeScript("arguments[0].setAttribute('readonly', '')", element);
             } else if(!element.isDisplayed()){
-                String inputParam = "{\"scripts\": {\"uploadFile\":[{ \"script\":\"document.getElementById('importFileHidden').style.display='inline-block';\"} ]}}";
+                String inputParam = param.getInputParam();
                 new ExecuteJSCmd().execute(
                         new CommandParam(param.getTestCaseName(),
                                 "ExecuteJS",

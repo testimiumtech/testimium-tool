@@ -21,6 +21,7 @@ public class Assertions {
     private String expectedParamType;
     private String fileName;
     private String[] wordsToSearch;
+    private String globalKey;
     private List<Map<String, Object>> dateToSearch;
     private String[] excludePattern;
     private List<Map<String, Object>> excludeDatePattern;
@@ -129,6 +130,18 @@ public class Assertions {
 
     public void setWordsToSearch(String[] wordsToSearch) {
         this.wordsToSearch = wordsToSearch;
+    }
+
+    /**
+     *
+     * @return string as text
+     */
+    public String getGlobalKey() {
+        return globalKey;
+    }
+
+    public void setGlobalKey(String globalKey) {
+        this.globalKey = globalKey;
     }
 
     /**

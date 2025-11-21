@@ -6,6 +6,7 @@ import com.testimium.tool.domain.CommandParam;
 import com.testimium.tool.domain.CommandResponse;
 import com.testimium.tool.exception.CommandException;
 import com.testimium.tool.helper.ExceptionHelper;
+import com.testimium.tool.logging.LogUtil;
 import com.testimium.tool.reader.PropertyReader;
 import com.testimium.tool.utility.FileUtility;
 import com.testimium.tool.utility.PropertyUtility;
@@ -36,6 +37,7 @@ public class SetElementCmd implements ExternalCommand<CommandParam, CommandRespo
     //TODO Have to decide either ConmmandResponse/WebElement/Dynamic as response object
     @Override
     public CommandResponse execute(CommandParam param) throws CommandException, HttpTimeoutException {
+        LogUtil.logToolMsg("Start SetElement");
         try {
             if(null == param.getArgs() || param.getArgs().length < 2)
                 throw new CommandException("Command argument is missing: provide Command argument (propertyKey, Value). ");

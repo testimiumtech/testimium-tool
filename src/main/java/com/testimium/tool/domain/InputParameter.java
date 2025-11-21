@@ -17,6 +17,7 @@ public class InputParameter {
     private Integer[] recordNums;
     private boolean useGlobalVariable = false;
     private boolean useCopiedVariable = false;
+    private List<String> failOverTestCaseKeys;
 
     public Map<String, List<Map<String, String>>> getFormElements() {
         return formElements;
@@ -90,6 +91,14 @@ public class InputParameter {
         this.recordNums = recordNums;
     }
 
+    public List<String> getFailOverTestCaseKeys() {
+        return failOverTestCaseKeys;
+    }
+
+    public void setFailOverTestCaseKeys(List<String> failOverTestCaseKeys) {
+        this.failOverTestCaseKeys = failOverTestCaseKeys;
+    }
+
     @Override
     public String toString() {
         return "InputParameter{" +
@@ -102,10 +111,11 @@ public class InputParameter {
                 ", recordNums=" + Arrays.toString(recordNums) +
                 ", useGlobalVariable=" + useGlobalVariable +
                 ", useCopiedVariable=" + useCopiedVariable +
+                ", failOverTestCaseKeys=" + failOverTestCaseKeys +
                 '}';
     }
 
-   /* @Override
+    /* @Override
     public String toString() {
         return "InputParameter{" +
                 "formElements=" + formElements +

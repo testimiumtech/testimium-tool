@@ -2,9 +2,10 @@ package com.testimium.tool.utility;
 
 import com.testimium.tool.context.TestContext;
 import com.testimium.tool.domain.AssertParameter;
-import com.testimium.tool.exception.AssertParamNotFoundException;
-import com.testimium.tool.exception.AssertParamParsingException;
-import com.testimium.tool.exception.JsonParsingException;
+import com.testimium.tool.domain.CommandParam;
+import com.testimium.tool.domain.InputParameter;
+import com.testimium.tool.domain.TestJsonInputData;
+import com.testimium.tool.exception.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,5 +42,16 @@ public class JsonParserUtility<T> {
             throw new AssertParamNotFoundException();
     }
 
+    public static InputParameter getInputParam() throws InputParamNotFoundException, InputParamParsingException {
+        if(StringUtils.isNotEmpty(TestContext.getTestContext("").getTestInputJson())) {
+            try {
+                return new JsonParserUtility<InputParameter>()
+                        .parse(TestContext.getTestContext("").getTestInputJson(), InputParameter.class);
+            } catch (JsonParsingException e) {
+                throw new InputParamParsingException(e);
+            }
+        } else
+            throw new InputParamNotFoundException();
+    }
 
 }

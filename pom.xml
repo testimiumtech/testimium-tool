@@ -7,7 +7,7 @@
 
     <groupId>com.testimium</groupId>
     <artifactId>testimium-tool</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <name>Testimium Tool</name>
     <description>A testing tool for automated test management</description>
     <url>https://github.com/testimiumtech/testimium-tool</url>
@@ -54,7 +54,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <selenium.version>4.13.0</selenium.version>
-        <tool.version>1.0.1</tool.version>
+        <tool.version>1.0.3</tool.version>
     </properties>
     <dependencies>
         <dependency>
@@ -425,7 +425,7 @@
                         <version>3.1.0</version>
                         <executions>
                             <execution>
-                                <id>sign-artifacts</id>
+                                <id>central</id>
                                 <phase>verify</phase>
                                 <goals><goal>sign</goal></goals>
                             </execution>
@@ -455,5 +455,5 @@
 
 </project>
         <!--https://www.baeldung.com/executable-jar-with-maven-->
-
+        <!--clean install -P package-->
         <!--mvn clean deploy -P release -f pom-publish.xml-->

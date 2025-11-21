@@ -135,9 +135,12 @@ public class ExcelParser implements IDataParser <String, ExcelParser>{
 
             ExcelTestCase tc = new ExcelTestCase(colValue);
 
-            if("failOverSteps".equals(tc.getTestCaseName()))
+           // if("failOverSteps".equals(tc.getTestCaseName()))
+            if("failOverSteps".equals(tc.getTestCaseName())) {
                 TestContext.getTestContext("").getFailOver().put("TestSuiteLevel", tc);
-            else if((null != tc.getTestSteps() && tc.getTestSteps().size() > 0))
+            } else  if(tc.getTestCaseName().contains("failOverSteps-")) {
+                TestContext.getTestContext("").getFailOver().put(tc.getTestCaseName().trim(), tc);
+            } else if((null != tc.getTestSteps() && tc.getTestSteps().size() > 0))
                    /* && (PropertyUtility.isAllTestExecEnabled() || !tc.isDisabled())
                     && tc.isAutomated())*/ {
                 tcList.add(tc);
