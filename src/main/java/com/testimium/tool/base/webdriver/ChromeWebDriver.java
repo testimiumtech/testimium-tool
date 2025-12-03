@@ -76,6 +76,7 @@ public class ChromeWebDriver extends AbstractWebDriver<ChromeOptions, ChromeWebD
 
     @Override
     protected ChromeOptions loadOptions() {
+        String policyPath = "Browser/policy/chrome-policies.json";
         Map<String, Object> prefs = new HashMap<String, Object>();
         //prefs.put("profile.default_content_settings.popups", 0);
         //prefs.put("browser.download.folderlist", 0);
@@ -86,6 +87,10 @@ public class ChromeWebDriver extends AbstractWebDriver<ChromeOptions, ChromeWebD
 
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("–allow-preloaded-browser-policies");
+        // Load the policy file
+        options.addArguments("--policy-file-path=" + policyPath);
+
         //Start
         //If you are using Chrome version 115 or newer, please consult the Chrome for Testing availability dashboard. This page provides convenient JSON endpoints for specific ChromeDriver version downloading.
         //For versions 115 and newer

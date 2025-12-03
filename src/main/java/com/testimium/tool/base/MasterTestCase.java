@@ -81,7 +81,7 @@ public class MasterTestCase /*implements ITest*/ {
                         reportGenerator.startNewTestsuite(sheetList.get(itr));
                         //testContext.setAssigneCatogary(excelParser.getFileName().substring(0, excelParser.getFileName().lastIndexOf(".")) + "-->" + sheetList.get(itr));
                         //processTest(excelParser, sheetList.get(itr), false);
-                        processTest(testCases, excelParser.getFileName(), sheetList.get(itr), isNestedNodeEnabled);
+                        processTest(testCases, excelParser.getFileName(), sheetList.get(itr), isNestedNodeEnabled, false);
                     }
                 } catch (IOException ex) {
                     System.out.println("========================1 TODO Fix Exception and Log===================================");
@@ -106,7 +106,7 @@ public class MasterTestCase /*implements ITest*/ {
         }*/
     }
 
-    public static void processTest(List<ExcelTestCase> testCases, String fileName, String sheetName, boolean isAppendTestcase) throws IOException, ShutdownTestExecution, TestException {
+    public static void processTest(List<ExcelTestCase> testCases, String fileName, String sheetName, boolean isAppendTestcase, boolean isFailOverStep) throws IOException, ShutdownTestExecution, TestException {
         ReportGenerator reportGenerator = ReportGenerator.getReportInstance();
         //TestContext.getTestContext("").getFailOver().put("TestSuiteLevel", null);
         int skipNumberOfNextTestCases = 0;
@@ -118,6 +118,7 @@ public class MasterTestCase /*implements ITest*/ {
             for (int itr = 0; itr < testCases.size(); itr++) {
 
                 ExcelTestCase testCase = testCases.get(itr);
+                testCase.setFailOverTest(isFailOverStep);
                 //List<String> executeTestCmdHierarchy = TestContext.getTestContext("").getExecuteTestCmdHierarchy();
                 /*if((isAppendTestcase && executeTestCmdHierarchy.size() > 0) || !isAppendTestcase && executeTestCmdHierarchy.size() == 0) {
                     testContext.setTestCaseName(testCase.getTestCaseName());
@@ -189,7 +190,7 @@ public class MasterTestCase /*implements ITest*/ {
                 }
 
                 try {
-                    new TestCaseHelper().executeTestStep(testCase, isAppendTestcase);
+                    new TestCaseHelper().executeTestStep(testCase, isAppendTestcase, testCase.isFailOverTest());
                 } catch (HandleFailOverTestExecution ex) {
                     CommandResponse commandResponse = new TestCaseHelper().handleFailOverTestExecution(ex, testCase);
                     skipNumberOfNextTestCases = commandResponse.getSkipNumberOfNextTestCases();

@@ -17,6 +17,7 @@ import com.testimium.tool.logging.LogUtil;
 import com.testimium.tool.report.generator.ReportGenerator;
 import com.testimium.tool.utility.JsonParserUtility;
 import com.testimium.tool.utility.PropertyUtility;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class TestCaseHelper {
      * @throws HandleFailOverTestExecution If anything fails
      * @throws TestException If any test exception
      */
-    public void executeTestStep(ExcelTestCase excelTestCase, boolean nestedNodeEnabled) throws ShutdownTestExecution, HandleFailOverTestExecution, TestException {
+    public void executeTestStep(ExcelTestCase excelTestCase, boolean nestedNodeEnabled, boolean isFailOverStep) throws ShutdownTestExecution, HandleFailOverTestExecution, TestException {
 
 
         List<TestStep> testSteps = excelTestCase.getTestSteps();
@@ -64,6 +65,7 @@ public class TestCaseHelper {
                         testStep.getParams(),
                         excelTestCase.getInputParam(),
                         excelTestCase.getAssertParam());
+                commandParam.setFailOverStep(isFailOverStep);
                 commandParam.setNestedNodeEnabled(nestedNodeEnabled);
                 try {
                     actionExecutor.execute(commandParam);
@@ -75,10 +77,10 @@ public class TestCaseHelper {
                 //Call from actionExecutor.execute()
                 LogUtil.logTestCaseErrorMsg("Assertion Error TestCaseHelper:- ", error);
                 TestContext.getTestContext("").getTestStepErrorLog().append("\nAssertion Error TestCaseHelper:-" + error);
+                //TODO Why this handle failOver is here under Assertion Error. Analyse and remove this
                 if(TestContext.getTestContext("").isHandleFailOver()) {
                     throw  new HandleFailOverTestExecution("Starts", commandParam);
                 }
-
             }
         }
         TestContext.getTestContext(excelTestCase.getTestCaseName()).clearInputMap();
@@ -158,37 +160,47 @@ public class TestCaseHelper {
                     ExtentTest nestedChild =  initialExtentTestChild.createNode("Start - TestSuite Level - Handle FailOver Steps");
                     ReportGenerator.getReportInstance().setChildNodeLevel1(nestedChild);
 
-                    InputParameter inputParam = JsonParserUtility.getInputParam();
+                    InputParameter inputParam = null;
                     List<String> failOverTestCaseKeys = null;
+                   if(StringUtils.isNotEmpty(TestContext.getTestContext("").getTestInputJson())) {
+                        inputParam = JsonParserUtility.getInputParam();
+                    } else if(!testCase.isFailOverTest()){
+                       failOverTestCaseKeys = new ArrayList<>();
+                       failOverTestCaseKeys.add("TestSuiteLevel");
+                   }
+
+
                     if(null != inputParam && null != inputParam.getFailOverTestCaseKeys() && inputParam.getFailOverTestCaseKeys().size() > 0) {
                         failOverTestCaseKeys = inputParam.getFailOverTestCaseKeys();
-                    } else {
+                    } /*else {
                         failOverTestCaseKeys = new ArrayList<>();
                         failOverTestCaseKeys.add("TestSuiteLevel");
-                    }
+                    }*/
 
-                    for(int ktr=0; ktr < failOverTestCaseKeys.size(); ktr++) {
-                        //Object testCaseObj = TestContext.getTestContext("").getFailOver().get("TestSuiteLevel");
-                        Object testCaseObj = TestContext.getTestContext("").getFailOver().get(failOverTestCaseKeys.get(ktr));
-                        LogUtil.logTestCaseErrorMsg("TestSuiteLevel" + failOverTestCaseKeys.get(ktr) + " testCaseSteps -> " + testCaseObj, ex);
-                        if (null != testCaseObj) {
-                            if (null != ((ExcelTestCase) testCaseObj).getTestSteps()) {
-                                executeTestStep((ExcelTestCase) testCaseObj, true);
-                                LogUtil.logTestCaseMsg("Handling the fail over test execution: Finished");
-                                ReportGenerator.getReportInstance().getChildNodeLevel1().info("Handling the fail over test execution: Finished");
+                    if(null != failOverTestCaseKeys) {
+                        for (int ktr = 0; ktr < failOverTestCaseKeys.size(); ktr++) {
+                            //Object testCaseObj = TestContext.getTestContext("").getFailOver().get("TestSuiteLevel");
+                            Object testCaseObj = TestContext.getTestContext("").getFailOver().get(failOverTestCaseKeys.get(ktr));
+                            LogUtil.logTestCaseErrorMsg("TestSuiteLevel" + failOverTestCaseKeys.get(ktr) + " testCaseSteps -> " + testCaseObj, ex);
+                            if (null != testCaseObj) {
+                                if (null != ((ExcelTestCase) testCaseObj).getTestSteps()) {
+                                    executeTestStep((ExcelTestCase) testCaseObj, true, true);
+                                    LogUtil.logTestCaseMsg("Handling the fail over test execution: Finished");
+                                    ReportGenerator.getReportInstance().getChildNodeLevel1().info("Handling the fail over test execution: Finished");
                             /*TestContext.getTestContext("").getTest()
                                     .log(Status.INFO, "Handling the fail over test execution: Finished");*/
+                                } else {
+                                    LogUtil.logTestCaseMsg("Handling the fail over test scripts Not Found");
+                                    ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Handling the fail over test scripts Not Found");
+                            /*TestContext.getTestContext("").getTest()
+                                    .log(Status.FAIL, "Handling the fail over test scripts Not Found");*/
+                                }
                             } else {
                                 LogUtil.logTestCaseMsg("Handling the fail over test scripts Not Found");
                                 ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Handling the fail over test scripts Not Found");
-                            /*TestContext.getTestContext("").getTest()
-                                    .log(Status.FAIL, "Handling the fail over test scripts Not Found");*/
-                            }
-                        } else {
-                            LogUtil.logTestCaseMsg("Handling the fail over test scripts Not Found");
-                            ReportGenerator.getReportInstance().getChildNodeLevel1().fail("Handling the fail over test scripts Not Found");
                         /*TestContext.getTestContext("").getTest()
                                 .log(Status.FAIL, "failOverSteps test not defined");*/
+                            }
                         }
                     }
                     LogUtil.logTestCaseErrorMsg("Finish - TestSuite Level - Handle FailOver Steps", null);

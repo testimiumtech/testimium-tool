@@ -53,6 +53,8 @@ public class HandleFailOverExecutor implements Action<CommandParam, CommandRespo
                     ReportGenerator.getReportInstance().setChildNodeLevel1(initialExtentTestChild);
                 } else {
                     commandResponse = new CommandResponse("(Sucess)", true);
+                    commandResponse.setSkipNumberOfNextTestCases(inputData.getSkipNumberOfNextTestCases());
+                    commandResponse.setFailNumberOfNextTestCases(inputData.getFailNumberOfNextTestCases());
                 }
             } else {
                 commandResponse = new CommandResponse("(Sucess)", true);

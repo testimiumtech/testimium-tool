@@ -28,6 +28,7 @@ public class ExcelTestCase {
     private boolean isDisabled;
     private String status;
     private String comments;
+    private boolean isFailOverTest;
 
     public ExcelTestCase() {
     }
@@ -323,6 +324,13 @@ public class ExcelTestCase {
         this.comments = comments.replaceAll("\n", "<br/>");;
     }
 
+    public boolean isFailOverTest() {
+        return isFailOverTest;
+    }
+
+    public void setFailOverTest(boolean failOverTest) {
+        isFailOverTest = failOverTest;
+    }
 
     @Override
     public String toString() {
@@ -347,6 +355,7 @@ public class ExcelTestCase {
         logString.append(String.format(logFormat,"isDisabled=", isDisabled));
         logString.append(String.format(logFormat,"status", status));
         logString.append(String.format(logFormat,"comments", comments));
+        logString.append(String.format(logFormat,"isFailOverTest", isFailOverTest));
          //       '}';
         return logString.toString();
     }

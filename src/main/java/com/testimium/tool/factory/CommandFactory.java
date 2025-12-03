@@ -1,8 +1,10 @@
 package com.testimium.tool.factory;
 
+import com.testimium.tool.action.CommandTypes;
 import com.testimium.tool.command.Command;
 import com.testimium.tool.action.Commands;
 import com.testimium.tool.exception.CommandNotFoundException;
+import com.testimium.tool.logging.LogUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -37,7 +39,7 @@ public class CommandFactory {
     }
 
 
-    /*public static synchronized Command getCommandInstance(String command) throws CommandNotFoundException {
+   /* public static synchronized Command getCommandInstance(String command) throws CommandNotFoundException {
         synchronized (command) {
             Command cmd = null;
             try {

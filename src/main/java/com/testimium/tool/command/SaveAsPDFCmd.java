@@ -439,7 +439,7 @@ public class SaveAsPDFCmd implements ExternalCommand<CommandParam, CommandRespon
     }
 
     private static void  verifyPrintDialog() {
-        for(int itr=0; itr < 2;itr++) {
+       // for(int itr=0; itr < 2;itr++) {
             try {
                 Robot robot = new Robot();
                 robot.keyPress(KeyEvent.VK_ESCAPE);
@@ -447,11 +447,11 @@ public class SaveAsPDFCmd implements ExternalCommand<CommandParam, CommandRespon
             } catch (AWTException e) {
                 LogUtil.logTestCaseErrorMsg("SaveAsPDFCmd - Try to verify and Escape any OS popup windows - ", e);
             }
-            try {
+           /* try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
             /*WinDef.HWND hwnd = User32.INSTANCE.FindWindow(null, "Print");
             if (hwnd != null) {
                 System.out.println("Print dialog is opened.");
@@ -470,7 +470,7 @@ public class SaveAsPDFCmd implements ExternalCommand<CommandParam, CommandRespon
             } else {
                 System.out.println("Print dialog is NOT present.");
             }*/
-        }
+        //}
     }
 }
 

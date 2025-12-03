@@ -71,7 +71,7 @@ public class ExecuteTestCmd implements ExternalCommand<CommandParam, CommandResp
                // ExcelParser excelParser = (ExcelParser) FileReaderFactory.getInstance().readFile("EXCEL", "TESTCASE", FileUtility.getAbsolutePath(filePath));
                 List<ExcelTestCase> testCases = excelParser.getTestCasesBySheetName(sheetName.trim());
                 if(null != testCases && testCases.size() > 0) {
-                    MasterTestCase.processTest(testCases, excelParser.getFileName(), sheetName, true);
+                    MasterTestCase.processTest(testCases, excelParser.getFileName(), sheetName, true, param.isFailOverStep());
                 }
             } else if (param.isNestedNodeEnabled()) {
                 MasterTestCase.process(excelParser, true);

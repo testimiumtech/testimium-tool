@@ -1,0 +1,5 @@
+{
+  "PasswordLeakDetectionEnabled": 0,
+  "PasswordManagerEnabled": false,
+  "SafetyCheckEnabled": false
+}

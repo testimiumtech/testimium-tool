@@ -13,6 +13,7 @@ public class CommandParam implements IRequest {
     String[] args;
     String  inputParam;
     String assertParam;
+    boolean isFailOverStep;
 
     boolean nestedNodeEnabled = false;
 
@@ -69,6 +70,14 @@ public class CommandParam implements IRequest {
         this.nestedNodeEnabled = nestedNodeEnabled;
     }
 
+    public boolean isFailOverStep() {
+        return isFailOverStep;
+    }
+
+    public void setFailOverStep(boolean failOverStep) {
+        isFailOverStep = failOverStep;
+    }
+
     @Override
     public String toString() {
         return "CommandParam{" +
@@ -78,6 +87,7 @@ public class CommandParam implements IRequest {
                 ", inputParam='" + inputParam + '\'' +
                 ", assertParam='" + assertParam + '\'' +
                 ", addToNodeEnabled=" + nestedNodeEnabled +
+                ", isFailOverStep=" + isFailOverStep +
                 '}';
     }
 }

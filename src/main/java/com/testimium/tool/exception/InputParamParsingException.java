@@ -9,11 +9,11 @@ public class InputParamParsingException extends Exception {
 
     public InputParamParsingException() {
         super(String.format("For given command: " + TestContext.getTestContext("").getCommand() +
-                "Not able to parse assert parameter: " + TestContext.getTestContext("").getTestInputJson()));
+                "Not able to parse input parameter: " + TestContext.getTestContext("").getTestInputJson()));
     }
 
     public InputParamParsingException(Throwable cause) {
         super(String.format("For given command: " + TestContext.getTestContext("").getCommand() +
-                "Not able to parse assert parameter: " + TestContext.getTestContext("").getTestInputJson()), cause);
+                "Not able to parse input parameter: " + TestContext.getTestContext("").getTestInputJson()), cause);
     }
 }

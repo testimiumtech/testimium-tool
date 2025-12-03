@@ -155,7 +155,7 @@ public class ActionHelper {
         DriverManager.getInstance().getWebDriver().get(String.valueOf(TestContext.getTestContext("").getGlobalVariable().get("lastUsedOpenAppUrl")));
         ExcelTestCase excelTestCase = (ExcelTestCase) TestContext.getTestContext("").getGlobalVariable().get("lastLoginTestSteps");
         boolean nestedNodeEnabled = Boolean.valueOf(String.valueOf(TestContext.getTestContext("").getGlobalVariable().get("lastLoginNestedNodeEnabled")));
-        new TestCaseHelper().executeTestStep(excelTestCase, nestedNodeEnabled);
+        new TestCaseHelper().executeTestStep(excelTestCase, nestedNodeEnabled, false);
         new OpenNewBrowserTabCmd().execute(null);
         DriverManager.getInstance().getWebDriver().get(currentUrl);
         throw new RecoverBrokenTestExecutionException("", excelTestCase,true, currentUrl);

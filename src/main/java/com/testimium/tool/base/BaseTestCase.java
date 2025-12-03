@@ -136,7 +136,7 @@ public class BaseTestCase extends MasterTestCase {
                                         }
                                         //testContext.setAssigneCatogary(excelParser.getFileName().substring(0, excelParser.getFileName().lastIndexOf(".")) + "-->" + name);
                                         //processTest(excelParser, sheetList.get(itr), false);
-                                        processTest(testCases, excelParser.getFileName(), sheetList.get(itr), false);
+                                        processTest(testCases, excelParser.getFileName(), sheetList.get(itr), false, false);
                                     }
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -164,7 +164,7 @@ public class BaseTestCase extends MasterTestCase {
                                                 reportGenerator.startNewTestsuite(sheetNames[ikr]);
                                             }
                                             //processTest(excelParser, sheetNames[ikr], false);
-                                            processTest(testCases, excelParser.getFileName(), sheetNames[ikr], false);
+                                            processTest(testCases, excelParser.getFileName(), sheetNames[ikr], false, false);
                                         }
                                     }
                                 } catch (IOException e) {
