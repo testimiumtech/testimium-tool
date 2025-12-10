@@ -92,8 +92,8 @@ public class ImageUtil {
 			filePath = FileUtility.getAbsolutePath(imagePath1);
 			LogUtil.logTestCaseMsg("Profile Image Path: " + filePath);
 			pattern = new Pattern(filePath);
-			screen.wait(pattern);
-			//screen.wait(pattern, 2);
+			//screen.wait(pattern);
+			screen.wait(pattern, 1);
 			LogUtil.logTestCaseMsg("Image - Found image successfully....");
 			LogUtil.logTestCaseMsg("Image matched: " + filePath);
 		} catch (FindFailed ffd) {
@@ -120,8 +120,8 @@ public class ImageUtil {
 		LogUtil.logTestCaseMsg("Image Path = " + filePath);
 		try {
 			patter1 = new Pattern(filePath);
-			screen.wait(patter1);
-			//screen.wait(dropDownImg, 2);
+			//screen.wait(patter1);
+			screen.wait(patter1, 1);
 			LogUtil.logTestCaseMsg("Image - Found image/Pattern successfully....");
 			LogUtil.logTestCaseMsg("Image/Pattern matched: " + file);
 		} catch (FindFailed ff) {

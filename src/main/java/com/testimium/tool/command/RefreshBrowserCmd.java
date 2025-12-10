@@ -9,16 +9,16 @@ import org.openqa.selenium.WebDriver;
 
 import java.net.http.HttpTimeoutException;
 
-public class RefreshBrowser implements ExternalCommand<CommandParam, CommandResponse> {
+public class RefreshBrowserCmd implements ExternalCommand<CommandParam, CommandResponse> {
     private WebDriver driver;
 
-    private static RefreshBrowser refreshBrowser = new RefreshBrowser();
+    private static RefreshBrowserCmd refreshBrowser = new RefreshBrowserCmd();
 
-    public RefreshBrowser() {
+    public RefreshBrowserCmd() {
         this.driver = DriverManager.getInstance().getWebDriver();
     }
 
-    public static RefreshBrowser getInstance() {
+    public static RefreshBrowserCmd getInstance() {
         //TODO Fix Me for concurrent access
         return refreshBrowser;
     }

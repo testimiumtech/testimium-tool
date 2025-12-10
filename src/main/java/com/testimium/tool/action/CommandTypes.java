@@ -66,7 +66,9 @@ public enum CommandTypes {
     ENDIFRAME(EndIFrameCmd::new),
     SAVEASIMAGE(SaveAsImageCmd::new),
     COMPAREDATE(CompareDateCmd::new),
-    REFRESHBROWSER(RefreshBrowser::new);
+    REFRESHBROWSER(RefreshBrowserCmd::new),
+    CLEARSELECT(ClearSelectCmd::new),
+    CLEARCHECKBOX(ClearCheckboxCmd::new),;
     //InternalOperations
     //INVALID("Invalid Operation");
 

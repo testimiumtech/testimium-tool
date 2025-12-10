@@ -13,5 +13,9 @@
 # Version 1.0.4 - 2025-11-25
 - Support only chrome based web browser automation testing
 - Fixed test case level handle fail over
+- Fixed Refresh browser command
 - Removed sikuli support for uploadFile command
 - Implemented global variable support for CompareFile command to search the text (under PDF/text file) for global value
+- Implemented Command CleaSelect to clear the dropdown value based on locator
+- Implemented Command ClearCheckbox to clear the checked checkbox based on locator
+- 

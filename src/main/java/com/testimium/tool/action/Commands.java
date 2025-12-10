@@ -2,7 +2,6 @@ package com.testimium.tool.action;
 /**
  * @author Sandeep Agrawal
  */
-@Deprecated
 public enum Commands {
     OPENURL("OpenUrl"),
     CLICK("Click"),
@@ -62,6 +61,8 @@ public enum Commands {
     SAVEASIMAGE("SaveAsImage"),
     COMPAREDATE("CompareDate"),
     REFRESHBROWSER("RefreshBrowser"),
+    CLEARSELECT("ClearSelect"),
+    CLEARCHECKBOX("ClearCheckbox"),
     //InternalOperations
     INVALID("Invalid Operation");
 

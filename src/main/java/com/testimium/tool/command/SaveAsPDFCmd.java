@@ -192,6 +192,13 @@ public class SaveAsPDFCmd implements ExternalCommand<CommandParam, CommandRespon
         screen = new Screen();
         //String[] saveTextBoxImages = FileUtility.getAllFiles("images/saveaspdf/savetextbox");
         printPattern = ImageUtil.matchImagePatterns(screen, "saveaspdf/savetextbox");
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_A);
+        robot.getAutoDelay();
+        robot.keyRelease(KeyEvent.VK_A);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
         StringSelection selection = new StringSelection((PropertyUtility.getDefaultDownloadPath()
                 + "/" + filename + ((filename.contains(".pdf"))? "" : ".pdf")).replaceAll("/","\\\\"));
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
@@ -202,113 +209,9 @@ public class SaveAsPDFCmd implements ExternalCommand<CommandParam, CommandRespon
         robot.keyPress(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_CONTROL);
-        /* robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_A);
-        robot.getAutoDelay();
-        robot.keyRelease(KeyEvent.VK_A);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        *//*robot.keyPress(KeyEvent.VK_DELETE);
-        robot.keyRelease(KeyEvent.VK_DELETE);*//*
-        robot.keyPress(KeyEvent.VK_BACK_SPACE);
-        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-        screen.type(printPattern, (PropertyUtility.getDefaultDownloadPath()
-                + "/" + filename + ((filename.contains(".pdf"))? "" : ".pdf")).replaceAll("/","\\\\"));*/
-        //Step-5  click save button in the save dialog box
-        //String[] saveBtnDialogBoxImage = FileUtility.getAllFiles("images/saveaspdf/savebutton");
+
         printPattern = ImageUtil.matchImagePatterns(screen, "saveaspdf/savebutton");
         screen.click(printPattern);
-
-        /*for (String file : FileUtility.getAllFiles("images/saveaspdf/optiontosavepdf")) {
-            try {
-                dropDownImg = new Pattern(FileUtility.getAbsolutePath(file));
-                screen.wait(dropDownImg);
-                //screen.wait(dropDownImg, 2);
-                //filePath = file;
-                //if(itr !=1 && itr !=2) {
-                //if(!file.contains("SaveAsPDF.png")){
-                LogUtil.logTestCaseMsg("Image Loop - Find image successfully to select option for SaveAsPDF....");
-                LogUtil.logTestCaseMsg("optiontosavepdf image matched: " + file);
-                break;
-            } catch (FindFailed ff) {
-                LogUtil.logTestCaseMsg("SaveAsPDF optiontosavepdf image not matched: " + file);
-                try {
-                    dropDownImg = matchToolProfilePattern(screen, file);
-                    LogUtil.logTestCaseMsg("optiontosavepdf === " + dropDownImg.toString());
-                    if (dropDownImg.isValid() == true) break;
-                }catch (Exception ex){}
-            }
-        }
-        screen.click(dropDownImg);*/
-
-
-       /* Pattern buttonImg = null; //new Pattern(FileUtility.getAbsolutePath("images//PrintSaveButton.png"));
-        for (String file : FileUtility.getAllFiles("images/saveaspdf/savebutton")) {
-            try {
-                buttonImg = new Pattern(FileUtility.getAbsolutePath(file));
-                screen.wait(buttonImg);
-                //screen.wait(buttonImg, 2);
-                LogUtil.logTestCaseMsg("Image Loop - Find image successfully to click save PDF button in the print screen....");
-                LogUtil.logTestCaseMsg("savebutton image matched: " + file);
-                break;
-            } catch (FindFailed ff) {
-                LogUtil.logTestCaseMsg("savebutton image in the print not matched: " + file);
-                buttonImg = matchToolProfilePattern(screen, file);
-                if (buttonImg.isValid() == true) break;
-            }
-        }
-        screen.click(buttonImg);
-
-
-        new WaitCmd().execute(new CommandParam(null,null, new String[]{"2000"}, null, null));*/
-        //Print screen End
-        //Save dialog window Start
-        //setAddressBarPath(param);
-        /*screen = new Screen();
-        Pattern saveFileTextBox = null; //new Pattern(FileUtility.getAbsolutePath("images//savetextbox//SaveTextBox.png"));
-        for (String file : FileUtility.getAllFiles("images/saveaspdf/savetextbox")) {
-            try {
-                saveFileTextBox = new Pattern(FileUtility.getAbsolutePath(file));
-                screen.wait(saveFileTextBox);
-                //screen.wait(saveFileTextBox, 5);
-                robot.keyPress(KeyEvent.VK_CONTROL);
-                robot.keyPress(KeyEvent.VK_A);
-                robot.getAutoDelay();
-                robot.keyRelease(KeyEvent.VK_CONTROL);
-                robot.keyRelease(KeyEvent.VK_A);
-                robot.keyPress(KeyEvent.VK_BACK_SPACE);
-                robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-                *//*screen.type(saveFileTextBox, (PropertyUtility.getDefaultDownloadPath()
-                        + "/" + filename + ((filename.contains(".pdf"))? "" : ".pdf")).replaceAll("/","\\\\"));*//*
-                LogUtil.logTestCaseMsg("Image Loop - Find image successfully to type in textbox to SaveAsPDF....");
-                LogUtil.logTestCaseMsg("savetextbox image matched: " + file);
-                break;
-            } catch (FindFailed ff) {
-                LogUtil.logTestCaseMsg("SaveAsPDF savetextbox image not matched: " + file);
-                saveFileTextBox = matchToolProfilePattern(screen, file);
-                if (saveFileTextBox.isValid() == true) break;
-            }
-        }
-        screen.type(saveFileTextBox, (PropertyUtility.getDefaultDownloadPath()
-                + "/" + filename + ((filename.contains(".pdf"))? "" : ".pdf")).replaceAll("/","\\\\"));*/
-
-        /*Pattern saveButton = null; //new Pattern(FileUtility.getAbsolutePath("images//savebutton//SaveButton.png"));
-        for (String file : FileUtility.getAllFiles("images/saveaspdf/savebutton")) {
-            try {
-                saveButton = new Pattern(FileUtility.getAbsolutePath(file));
-                screen.wait(saveButton);
-                //screen.wait(saveButton, 2);
-                LogUtil.logTestCaseMsg("Image Loop - Find image successfully to click save button for SaveAsPDF....");
-                LogUtil.logTestCaseMsg("savebutton image matched: " + file);
-                break;
-            } catch (FindFailed ff) {
-                LogUtil.logTestCaseMsg("SaveAsPDF savebutton image not matched: " + file);
-                saveButton = matchToolProfilePattern(screen, file);
-                if (saveButton.isValid() == true) break;
-            }
-        }
-        screen.click(saveButton);*/
-        //Save dialog window End
     }
 
     /*private static Pattern findImagePattern(Screen screen, String imagePath) throws IOException {

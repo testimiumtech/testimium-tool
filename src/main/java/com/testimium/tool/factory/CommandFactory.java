@@ -1,10 +1,8 @@
 package com.testimium.tool.factory;
 
-import com.testimium.tool.action.CommandTypes;
-import com.testimium.tool.command.Command;
 import com.testimium.tool.action.Commands;
+import com.testimium.tool.command.Command;
 import com.testimium.tool.exception.CommandNotFoundException;
-import com.testimium.tool.logging.LogUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,7 +31,7 @@ public class CommandFactory {
                 return (Command) method.invoke(null, null);
             } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException |
                      InvocationTargetException | IllegalArgumentException e) {
-                throw new CommandNotFoundException(command);
+                throw new CommandNotFoundException(command + "  - " + e.getMessage());
             }
         }
     }

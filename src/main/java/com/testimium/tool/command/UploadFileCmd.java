@@ -47,8 +47,8 @@ public class UploadFileCmd implements ExternalCommand<CommandParam, CommandRespo
     public CommandResponse execute(CommandParam param) throws CommandException {
         String filePath = null;
         try {
-            if(null == param.getArgs() || param.getArgs().length < 1)
-                throw new CommandException("Command argument is missing: provide file name to upload e.g. test.csv");
+            if(null == param.getArgs() || param.getArgs().length < 2)
+                throw new CommandException("Command argument is missing: provide both locator and file name to upload e.g. test.csv");
 
 
            /* if(PropertyUtility.isSikuliExecutionEnabled()) {

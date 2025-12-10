@@ -44,7 +44,7 @@ public class ActionHelper {
                     && !"CloseBrowserTab".equalsIgnoreCase(param.getCommand())
                     && !"CloseAllBrowserTab".equalsIgnoreCase(param.getCommand())
                     && !"SetGlobalVariable".equalsIgnoreCase(param.getCommand())
-                    && !"UploadFile".equalsIgnoreCase(param.getCommand())
+                    /*&& !"UploadFile".equalsIgnoreCase(param.getCommand())*/
                     && !"ClickOSElement".equalsIgnoreCase(param.getCommand())
                     && !param.getCommand().contains("VerifySQLResponse")
                     && !param.getCommand().contains("VerifyElements")
